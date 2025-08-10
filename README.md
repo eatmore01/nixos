@@ -12,3 +12,9 @@ sudo nixos-rebuild switch --flake ~/.nixos#etm
 ```bash
 sudo nixos-generate-config
 ```
+
+need move to home-manager managment
+- tofi
+- vscode
+- vim
+- ...

@@ -225,7 +225,7 @@ in
             modules-right = modules-right;
 
             "sway/workspaces" = {
-              format = "<span font='11'>{icon}</span>";
+              format = "{icon}";
               format-icons = {
                 "1" = "1";
                 "2" = "2";

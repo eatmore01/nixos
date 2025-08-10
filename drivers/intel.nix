@@ -9,12 +9,7 @@
     };
   };
 
-  config = mkIf (config.drivers.intel.enable) {
-    #  enableHybridCodec enable support hybrid codecs, and it will boost perfomance and add support new codec formats.
-    nixpkgs.config.packageOverrides = pkgs: {
-      vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
-    };
-
+  config = lib.mkIf (config.drivers.intel.enable) {
     hardware.graphics = {
       extraPackages = with pkgs; [
         intel-media-driver

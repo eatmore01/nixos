@@ -36,7 +36,15 @@
     pkgs = import nixpkgs {
       system =  vars.system;
       config = { 
-        allowUnfree = true; 
+        allowUnfree = true;
+
+      };
+      # for intel gpus
+      #  enableHybridCodec enable support hybrid codecs, and it will boost perfomance and add support new codec formats.
+      packageOverrides = pkgs: {
+        vaapiIntel = pkgs.vaapiIntel.override {
+          enableHybridCodec = true;
+        };
       };
     };
     

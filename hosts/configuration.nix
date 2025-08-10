@@ -4,7 +4,7 @@ in {
   imports = [
     ./options.nix
     ./hardware-configuration.nix
-    # ../drivers
+    ../drivers
     ../virtualisation
     ../services
     ../programs
@@ -46,9 +46,13 @@ in {
     # system utils
     udisks2
     unzip
+    zip
     dnsutils
     htop
+    btop
     git
+    wget
+    usbutils
     file
     vim
     # audio
@@ -70,15 +74,7 @@ in {
     options = "--delete-older-than 7d";
   };
 
-  lib.mkIf (vars.gpu == "intel") {
-    drivers.intel.enable = true;
-  };
-  
-  # for nvidia and amd drivers dont exist
-  lib.mkIf (vars.gpu == "nvidia") {
-    # drivers.nvidia.enable = true;
-  };
-  lib.mkIf (vars.gpu == "amd") {
-    # drivers.amd.enable = true;
-  };
+  drivers.intel.enable = if vars.gpu == "intel" then true else false;
+
+  # drivers.nvidia.enable = if vars.gpu == "nvidia" then true else false;
 }
