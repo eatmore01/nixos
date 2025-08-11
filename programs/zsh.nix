@@ -17,7 +17,7 @@
         nixrebuild = "sudo nixos-rebuild switch";
         nix-clear = "sudo nix-collect-garbage -d";
         etm-rebuild = "sudo nixos-rebuild switch --flake ~/.nixos#etm";
-        etm-flake-upd = "nix flake update --flake ~/.nixos#etm";
+        etm-flake-upd = "sudo nix flake update --flake ~/.nixos";
 
         # kube
         ktx = "kubectx";

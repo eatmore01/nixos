@@ -5,5 +5,7 @@
       ./git.nix
       ./zsh.nix
       ./waybar.nix
+      ./vim.nix
+      ./tofi.nix
     ];
 }

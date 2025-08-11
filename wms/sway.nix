@@ -24,7 +24,6 @@
           mako
           grim
           slurp
-          tofi
         ];
       };
     };

@@ -54,7 +54,6 @@ in {
     wget
     usbutils
     file
-    vim
     # audio
     pipewire
 
