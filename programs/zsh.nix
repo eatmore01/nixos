@@ -1,4 +1,10 @@
-{ vars, git, host, home-manager, ... }:
+{
+  vars,
+  git,
+  host,
+  home-manager,
+  ...
+}:
 {
   home-manager.users.${vars.user} = {
     programs.zsh = {
@@ -43,7 +49,10 @@
       oh-my-zsh = {
         enable = true;
         theme = "robbyrussell";
-        plugins = [ "git" "history" ];
+        plugins = [
+          "git"
+          "history"
+        ];
       };
     };
   };

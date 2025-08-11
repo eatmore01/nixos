@@ -1,12 +1,26 @@
-{ inputs, pkgs, home-manager, vars, lib, ... }: let
+{
+  inputs,
+  pkgs,
+  home-manager,
+  vars,
+  lib,
+  ...
+}:
+let
   system = vars.system;
-in {
+in
+{
   # main etm profile
   etm = lib.nixosSystem {
-    inherit  system pkgs;
+    inherit system pkgs;
     # define let vars global
     specialArgs = {
-      inherit inputs pkgs home-manager vars;
+      inherit
+        inputs
+        pkgs
+        home-manager
+        vars
+        ;
       host = "etm";
       git = {
         username = "eatmore01";
@@ -14,11 +28,12 @@ in {
       };
     };
 
-     # backupFileExtension - home-manager existing dotfiles will be backups and not throw with error
+    # backupFileExtension - home-manager existing dotfiles will be backups and not throw with error
     modules = [
       ./configuration.nix
 
-      home-manager.nixosModules.home-manager {
+      home-manager.nixosModules.home-manager
+      {
         home-manager = {
           useGlobalPkgs = true;
           useUserPackages = true;

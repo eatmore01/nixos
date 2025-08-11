@@ -14,5 +14,4 @@ sudo nixos-generate-config
 ```
 
 need move to home-manager managment
-- vscode
 - ...

@@ -1,4 +1,9 @@
-{ vars, git, home-manager, ... }:
+{
+  vars,
+  git,
+  home-manager,
+  ...
+}:
 {
   home-manager.users.${vars.user} = {
     programs.git = {

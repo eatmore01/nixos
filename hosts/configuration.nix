@@ -1,6 +1,16 @@
-{ config, pkgs, lib, vars, home-manager, host, ... }: let
+{
+  config,
+  pkgs,
+  lib,
+  vars,
+  home-manager,
+  host,
+  ...
+}:
+let
   hostSetup = ./${host};
-in {
+in
+{
   imports = [
     ./options.nix
     ./hardware-configuration.nix
@@ -11,10 +21,13 @@ in {
     ../wms
     hostSetup
   ];
-  
+
   system.stateVersion = vars.stateVersion;
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   boot.loader = {
     systemd-boot.enable = true;
@@ -54,6 +67,7 @@ in {
     wget
     usbutils
     file
+    nixfmt
     # audio
     pipewire
 
