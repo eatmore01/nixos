@@ -50,6 +50,8 @@
     terraform-docs
     helm-docs
     fastfetch
+    kind
+    talosctl
   ];
 
   # enable amnezia vpn service

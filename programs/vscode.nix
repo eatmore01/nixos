@@ -133,12 +133,12 @@ in
 
         keybindings = [
           {
-            key = "shift+alt+a";
+            key = "alt+a";
             command = "cursorEnd";
             when = "editorTextFocus";
           }
           {
-            key = "shift+alt+z";
+            key = "alt+z";
             command = "cursorHome";
             when = "editorTextFocus";
           }

@@ -25,6 +25,9 @@
         etm-rebuild = "sudo nixos-rebuild switch --flake ~/.nixos#etm";
         etm-flake-upd = "sudo nix flake update --flake ~/.nixos";
 
+        talos-cluster-create = "talosctl cluster create --workers 2 --name test";
+        talos-cluster-destroy = "talosctl cluster destroy --name test";
+
         # kube
         ktx = "kubectx";
         k = "kubectl";
