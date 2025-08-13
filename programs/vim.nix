@@ -1,4 +1,10 @@
-{ vars, host, home-manager, pkgs, ... }:
+{
+  vars,
+  host,
+  home-manager,
+  pkgs,
+  ...
+}:
 {
   environment.systemPackages = with pkgs; [
     vim

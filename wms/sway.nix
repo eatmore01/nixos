@@ -1,4 +1,11 @@
-{ config, lib, pkgs, vars, host, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  vars,
+  host,
+  ...
+}:
 {
   # custom option for enable sway
   options.sway = {
@@ -19,7 +26,6 @@
           xwayland
           swaylock
           swayidle
-          waybar
           wf-recorder
           mako
           grim
@@ -38,7 +44,7 @@
 
     home-manager.users.${vars.user} = {
       home.stateVersion = vars.stateVersion;
-      
+
       wayland.windowManager.sway = {
         enable = true;
         systemd.enable = true;
@@ -47,12 +53,7 @@
           terminal = "foot";
           menu = "${pkgs.tofi}/bin/tofi-run | xargs swaymsg exec --";
 
-          bars = [ 
-            # {
-            #   position = "bottom";
-            #   mode = "dock";
-            # }
-          ];
+          bars = [ ];
 
           startup = [
             { command = "waybar"; }
@@ -63,6 +64,11 @@
               xkb_layout = "us,ru";
               xkb_variant = ",";
               xkb_options = "grp:ctrl_space_toggle";
+            };
+            "type:pointer" = {
+              accel_profile = "flat";
+              pointer_accel = "-0.1"; # beetween -1 - 1
+              natural_scroll = "disabled";
             };
           };
 
@@ -95,8 +101,10 @@
             "${modifier}+s" = "layout stacking";
             "${modifier}+w" = "layout tabbed";
             "${modifier}+e" = "layout toggle split";
-            "--to-code Print" = "exec grim /tmp/swayshot.png && wl-copy < /tmp/swayshot.png && mv /tmp/swayshot.png ~/pic/screen-$(date +%s).png";
-            "--to-code ${modifier}+Shift+Print" = "exec grim -g \"$(slurp)\" /tmp/swayshot.png && wl-copy < /tmp/swayshot.png && mv /tmp/swayshot.png ~/pic/space-$(date +%s).png";
+            "--to-code ${modifier}+Shift+f" =
+              "exec grim /tmp/swayshot.png && wl-copy < /tmp/swayshot.png && mv /tmp/swayshot.png ~/pic/screen-$(date +%s).png";
+            "--to-code ${modifier}+Shift+s" =
+              "exec grim -g \"$(slurp)\" /tmp/swayshot.png && wl-copy < /tmp/swayshot.png && mv /tmp/swayshot.png ~/pic/space-$(date +%s).png";
 
             "--to-code ${modifier}+1" = "workspace number 1";
             "--to-code ${modifier}+2" = "workspace number 2";

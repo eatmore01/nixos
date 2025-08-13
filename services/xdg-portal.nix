@@ -1,4 +1,10 @@
-{ config, pkgs, lib, home-manager, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  home-manager,
+  ...
+}:
 {
   # for sway screen sharing in discord and browser
   config = lib.mkIf (config.sway.enable) {

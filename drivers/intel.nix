@@ -1,5 +1,9 @@
-
-{ lib, pkgs, config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 {
   # intel drivers for gpu options
   options.drivers.intel = {
@@ -15,7 +19,7 @@
         intel-media-driver
         libvdpau-va-gl
         libva
-			  libva-utils
+        libva-utils
       ];
     };
   };

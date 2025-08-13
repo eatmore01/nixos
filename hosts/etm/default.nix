@@ -1,4 +1,11 @@
-{ config, pkgs, lib, vars, home-manager, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  vars,
+  home-manager,
+  ...
+}:
 {
   services.greetd = {
     enable = true;
@@ -21,15 +28,20 @@
     defaultUserShell = pkgs.zsh;
     users.${vars.user} = {
       isNormalUser = true;
-      extraGroups = [ "networkmanager" "wheel" "storage" "plugdev"];
+      extraGroups = [
+        "networkmanager"
+        "wheel"
+        "storage"
+        "plugdev"
+      ];
     };
   };
 
   environment.systemPackages = with pkgs; [
     obsidian
     telegram-desktop
-    vscode
     discord
+    vscode # manage by home-manager
     kubectl
     kubernetes-helm
     terraform
@@ -39,8 +51,7 @@
     helm-docs
     fastfetch
   ];
-  
-  
+
   # enable amnezia vpn service
   programs.amnezia-vpn.enable = true;
 }
