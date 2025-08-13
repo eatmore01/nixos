@@ -52,6 +52,9 @@
     fastfetch
     kind
     talosctl
+    go
+    firefox
+    atac # tui postman
   ];
 
   # enable amnezia vpn service
