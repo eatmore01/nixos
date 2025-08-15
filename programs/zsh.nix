@@ -28,6 +28,8 @@
         talos-cluster-create = "talosctl cluster create --workers 2 --name test";
         talos-cluster-destroy = "talosctl cluster destroy --name test";
 
+        l = "ls -la";
+
         # kube
         ktx = "kubectx";
         k = "kubectl";
