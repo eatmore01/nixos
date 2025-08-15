@@ -1,7 +1,7 @@
 # Nixos
 
 
-`flake.nix` -> need to set gpu ( default intel ) 
+`flake.nix` -> need to set gpu | intel or nvidia
 
 
 ```bash

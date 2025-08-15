@@ -38,7 +38,7 @@
         stateVersion = "25.05";
         user = "etm";
         hostname = "nixos";
-        gpu = "intel";
+        gpu = "nvidia";
       };
       pkgs = import nixpkgs {
         system = vars.system;

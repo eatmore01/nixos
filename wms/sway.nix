@@ -72,6 +72,13 @@
             };
           };
 
+          output = {
+            "*".scale = "1";
+            "DP-1" = {
+              mode = "2560x1440@120Hz";
+            };
+          };
+
           defaultWorkspace = "workspace number 1";
 
           keybindings = {

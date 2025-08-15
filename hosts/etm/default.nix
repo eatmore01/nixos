@@ -40,13 +40,13 @@
   environment.systemPackages = with pkgs; [
     obsidian
     telegram-desktop
-    discord
+#    discord
     vscode # manage by home-manager
     kubectl
     kubernetes-helm
-    terraform
+#    terraform
     k9s
-    terragrunt
+#    terragrunt
     terraform-docs
     helm-docs
     fastfetch
