@@ -6,7 +6,7 @@
 
       settings = {
         main = {
-          font = "monospace:size=16";
+          font = "monospace:size=13";
         };
 
         cursor = {

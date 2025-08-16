@@ -1,9 +1,5 @@
 # Nixos
 
-
-`flake.nix` -> need to set gpu | intel or nvidia
-
-
 ```bash
 git clone https://github.com/eatmore01/nixos.git
 mv nixos ~/.nixos
@@ -18,4 +14,12 @@ sudo nixos-rebuild switch --flake ~/.nixos#etm
 - recreate hardware-configuration.nix and configuration.nix 
 ```bash
 sudo nixos-generate-config
+```
+
+- i3status and sway not support move tray form after to before bar =(
+
+- customization `flake.nix`;
+```
+42       gpu = "nvidia"; # or intel
+43       status_bar = "i3status"; # or waybar
 ```

@@ -33,13 +33,16 @@
       ...
     }@inputs:
     let
+
       vars = {
         system = "x86_64-linux";
         stateVersion = "25.05";
         user = "etm";
         hostname = "nixos";
-        gpu = "nvidia";
+        gpu = "nvidia"; # or intel
+        status_bar = "i3status"; # or waybar
       };
+
       pkgs = import nixpkgs {
         system = vars.system;
         config = {

@@ -6,6 +6,20 @@
   host,
   ...
 }:
+let
+  bar =
+    if vars.status_bar == "waybar" then
+      {
+        command = "waybar";
+      }
+    else if vars.status_bar == "i3status" then
+      {
+        position = "bottom";
+        statusCommand = "i3status-rs ~/.config/i3status-rust/config-etm.toml";
+      }
+    else
+      { };
+in
 {
   # custom option for enable sway
   options.sway = {
@@ -34,10 +48,9 @@
       };
     };
 
-    # x server disabled when sway.enable = true
-    # if xserver disabled and used wayladn compositor, sesion will be work on wayland not X
-    # enable wayland options for waybar
-    wlwm.enable = true;
+    # choose status bar for sway
+    waybar.enable = if vars.status_bar == "waybar" then true else false;
+    i3status.enable = if vars.status_bar == "i3status" then true else false;
 
     # keyrings sway support
     services.gnome.gnome-keyring.enable = true;
@@ -53,10 +66,8 @@
           terminal = "foot";
           menu = "${pkgs.tofi}/bin/tofi-run | xargs swaymsg exec --";
 
-          bars = [ ];
-
-          startup = [
-            { command = "waybar"; }
+          bars = [
+            bar
           ];
 
           input = {

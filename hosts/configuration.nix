@@ -12,7 +12,6 @@ let
 in
 {
   imports = [
-    ./options.nix
     ./hardware-configuration.nix
     ../drivers
     ../virtualisation

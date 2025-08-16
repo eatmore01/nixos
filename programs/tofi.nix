@@ -6,8 +6,8 @@
   ...
 }:
 {
-  # setup tofi for wayland compositor
-  config = lib.mkIf (config.wlwm.enable) {
+  # setup tofi for sway
+  config = lib.mkIf (config.sway.enable) {
     home-manager.users.${vars.user} = {
       home = {
         packages = with pkgs; [

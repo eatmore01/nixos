@@ -29,7 +29,15 @@ let
   ];
 in
 {
-  config = lib.mkIf (config.wlwm.enable) {
+
+  options.waybar = {
+    enable = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+    };
+  };
+
+  config = lib.mkIf (config.waybar.enable) {
     environment.systemPackages = with pkgs; [
       waybar
     ];

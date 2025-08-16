@@ -42,6 +42,7 @@
     telegram-desktop
     discord
     vscode # manage by home-manager
+    obs-studio
     kubectl
     kubernetes-helm
     terraform
@@ -55,6 +56,7 @@
     go
     firefox
     atac # tui postman
+    yazi # file manager for test
   ];
 
   # enable amnezia vpn service

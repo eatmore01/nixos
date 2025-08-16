@@ -7,5 +7,8 @@
     ./vim.nix
     ./tofi.nix
     ./vscode.nix
+    ./mako.nix
+    ./obs.nix
+    ./i3status.nix
   ];
 }
