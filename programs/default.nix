@@ -10,5 +10,6 @@
     ./mako.nix
     ./obs.nix
     ./i3status.nix
+    ./steam.nix
   ];
 }
