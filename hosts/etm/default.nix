@@ -57,6 +57,8 @@
     firefox
     atac # tui postman
     yazi # file manager for test
+    vlc # media player
+    neovim
   ];
 
   # enable amnezia vpn service

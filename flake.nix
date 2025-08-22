@@ -1,6 +1,6 @@
 {
   inputs = {
-    # SUPER FRESH NIXOS / high expore risk
+    # SUPER FRESH NIXOS / high explore risk
     master = {
       url = "github:NixOS/nixpkgs/master";
     };
@@ -20,6 +20,11 @@
       follows = "unstable"; # or stable
     };
 
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -30,6 +35,7 @@
       self,
       nixpkgs,
       home-manager,
+      nixvim,
       ...
     }@inputs:
     let
@@ -39,7 +45,8 @@
         stateVersion = "25.05";
         user = "etm";
         hostname = "nixos";
-        gpu = "intel"; # or intel
+
+        gpu = "intel"; # or nvidia
         status_bar = "i3status"; # or waybar
         twoScreen = true;
       };
@@ -70,6 +77,7 @@
             home-manager
             vars
             lib
+            nixvim
             ;
         }
       );
@@ -82,6 +90,7 @@
             home-manager
             vars
             lib
+            nixvim
             ;
         }
       );

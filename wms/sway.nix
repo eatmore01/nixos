@@ -48,6 +48,7 @@ let
       "HDMI-A-1"
     else
       "eDP-1"; # laptot default output
+
   secondMonitor =
     if vars.gpu == "nvidia" && vars.twoScreen == true then
       "HDMI-A-1"

@@ -2,6 +2,8 @@
   config,
   pkgs,
   vars,
+  nixvim,
+  inputs,
   ...
 }:
 {
@@ -12,5 +14,10 @@
     packages = [ pkgs.home-manager ];
   };
 
+  # imports = [
+  #   inputs.nixvim.homeModules.nixvim
+  # ];
+
   programs.home-manager.enable = true;
+  # programs.nixvim.enable = true;
 }
