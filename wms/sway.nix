@@ -19,6 +19,43 @@ let
       }
     else
       { };
+
+  defaultOoutput =
+    if vars.gpu == "nvidia" then
+      {
+        "*".scale = "1";
+        "DP-1" = {
+          mode = "2560x1440@120Hz";
+        };
+      }
+    else if vars.gpu == "intel" then
+      {
+        "*".scale = "1";
+        "eDP-1" = {
+          mode = "1920x1080@60Hz";
+        };
+        "HDMI-A-1" = {
+          mode = "2560x1440@60Hz";
+        };
+      }
+    else
+      { };
+
+  mainMonitor =
+    if vars.gpu == "nvidia" then
+      "DP-1"
+    else if vars.gpu == "intel" then
+      "HDMI-A-1"
+    else
+      "eDP-1"; # laptot default output
+  secondMonitor =
+    if vars.gpu == "nvidia" && vars.twoScreen == true then
+      "HDMI-A-1"
+    else if vars.gpu == "intel" && vars.twoScreen == true then
+      "eDP-1"
+    else
+      "eDP-1"; # laptop default output
+
 in
 {
   # custom option for enable sway
@@ -83,19 +120,55 @@ in
             };
           };
 
-          output = {
-            "*".scale = "1";
-            "DP-1" = {
-              mode = "2560x1440@120Hz";
-            };
-          };
+          output = defaultOoutput;
+
+          workspaceOutputAssign =
+            if vars.twoScreen == true then
+              [
+                {
+                  output = mainMonitor;
+                  workspace = "1";
+                }
+                {
+                  output = mainMonitor;
+                  workspace = "2";
+                }
+                {
+                  output = mainMonitor;
+                  workspace = "3";
+                }
+                {
+                  output = mainMonitor;
+                  workspace = "4";
+                }
+                {
+                  output = secondMonitor;
+                  workspace = "5";
+                }
+              ]
+            else
+              [
+                {
+                  output = mainMonitor;
+                  workspace = "1";
+                }
+                {
+                  output = mainMonitor;
+                  workspace = "2";
+                }
+                {
+                  output = mainMonitor;
+                  workspace = "3";
+                }
+              ];
 
           defaultWorkspace = "workspace number 1";
 
+          bindkeysToCode = true;
           keybindings = {
-            "--to-code ${modifier}+Return" = "exec ${terminal}";
-            "--to-code ${modifier}+d" = "exec ${menu}";
-            "--to-code ${modifier}+q" = "kill";
+            "${modifier}+Return" = "exec ${terminal}";
+            "${modifier}+d" = "exec ${menu}";
+            "${modifier}+q" = "kill";
             "${modifier}+f" = "fullscreen";
             # qwe
             "${modifier}+h" = "focus left";
@@ -103,10 +176,10 @@ in
             "${modifier}+k" = "focus up";
             "${modifier}+l" = "focus right";
             # arrrows
-            "--to-code ${modifier}+Left" = "focus left";
-            "--to-code ${modifier}+Down" = "focus down";
-            "--to-code ${modifier}+Up" = "focus up";
-            "--to-code ${modifier}+Right" = "focus right";
+            "${modifier}+Left" = "focus left";
+            "${modifier}+Down" = "focus down";
+            "${modifier}+Up" = "focus up";
+            "${modifier}+Right" = "focus right";
             #  qwe
             "${modifier}+Shift+h" = "move left";
             "${modifier}+Shift+j" = "move down";
@@ -114,33 +187,33 @@ in
             "${modifier}+Shift+l" = "move right";
             "${modifier}+Shift+space" = "floating toggle";
             "${modifier}+space" = "focus mode_toggle";
-            "--to-code ${modifier}+Shift+c" = "reload";
+            "${modifier}+Shift+c" = "reload";
             "${modifier}+Shift+e" = "swaymsg exit";
             "${modifier}+s" = "layout stacking";
             "${modifier}+w" = "layout tabbed";
             "${modifier}+e" = "layout toggle split";
-            "--to-code ${modifier}+Shift+f" =
+            "${modifier}+Shift+f" =
               "exec grim /tmp/swayshot.png && wl-copy < /tmp/swayshot.png && mv /tmp/swayshot.png ~/pic/screen-$(date +%s).png";
-            "--to-code ${modifier}+Shift+s" =
+            "${modifier}+Shift+s" =
               "exec grim -g \"$(slurp)\" /tmp/swayshot.png && wl-copy < /tmp/swayshot.png && mv /tmp/swayshot.png ~/pic/space-$(date +%s).png";
 
-            "--to-code ${modifier}+1" = "workspace number 1";
-            "--to-code ${modifier}+2" = "workspace number 2";
-            "--to-code ${modifier}+3" = "workspace number 3";
-            "--to-code ${modifier}+4" = "workspace number 4";
-            "--to-code ${modifier}+5" = "workspace number 5";
+            "${modifier}+1" = "workspace number 1";
+            "${modifier}+2" = "workspace number 2";
+            "${modifier}+3" = "workspace number 3";
+            "${modifier}+4" = "workspace number 4";
+            "${modifier}+5" = "workspace number 5";
 
-            "--to-code ${modifier}+Shift+1" = "move container to workspace number 1";
-            "--to-code ${modifier}+Shift+2" = "move container to workspace number 2";
-            "--to-code ${modifier}+Shift+3" = "move container to workspace number 3";
-            "--to-code ${modifier}+Shift+4" = "move container to workspace number 4";
-            "--to-code ${modifier}+Shift+5" = "move container to workspace number 5";
+            "${modifier}+Shift+1" = "move container to workspace number 1";
+            "${modifier}+Shift+2" = "move container to workspace number 2";
+            "${modifier}+Shift+3" = "move container to workspace number 3";
+            "${modifier}+Shift+4" = "move container to workspace number 4";
+            "${modifier}+Shift+5" = "move container to workspace number 5";
 
             # move windows via arrwos in the same workspace
-            "--to-code ${modifier}+Shift+Left" = "move left";
-            "--to-code ${modifier}+Shift+Down" = "move down";
-            "--to-code ${modifier}+Shift+Up" = "move up";
-            "--to-code ${modifier}+Shift+Right" = "move right";
+            "${modifier}+Shift+Left" = "move left";
+            "${modifier}+Shift+Down" = "move down";
+            "${modifier}+Shift+Up" = "move up";
+            "${modifier}+Shift+Right" = "move right";
 
             "${modifier}+Escape" = "exec swaymsg exit";
           };

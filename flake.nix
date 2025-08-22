@@ -39,8 +39,9 @@
         stateVersion = "25.05";
         user = "etm";
         hostname = "nixos";
-        gpu = "nvidia"; # or intel
+        gpu = "intel"; # or intel
         status_bar = "i3status"; # or waybar
+        twoScreen = true;
       };
 
       pkgs = import nixpkgs {
