@@ -43,6 +43,14 @@
     discord
     vscode # manage by home-manager
     obs-studio
+    fastfetch
+    go
+    firefox
+    atac # tui postman
+    yazi # file manager for test
+    vlc # media player
+    neovim
+    # devops utils
     kubectl
     kubernetes-helm
     terraform
@@ -50,15 +58,8 @@
     terragrunt
     terraform-docs
     helm-docs
-    fastfetch
     kind
     talosctl
-    go
-    firefox
-    atac # tui postman
-    yazi # file manager for test
-    vlc # media player
-    neovim
   ];
 
   # enable amnezia vpn service

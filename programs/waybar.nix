@@ -49,7 +49,7 @@ in
 
         style = ''
           @define-color background #1d2021;
-          @define-color foreground #ebdbb2;
+          @define-color foreground #ffffff;
           @define-color dim        #928374;
           @define-color yellow     #fabd2f;
           @define-color red        #fb4934;
