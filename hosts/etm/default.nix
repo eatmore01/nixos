@@ -18,8 +18,9 @@
     };
   };
 
-  # enable sway wm for etm
-  sway.enable = true;
+  # enable needed wms for etm
+  sway.enable = if varsvars.wms == "sway" then true else false;
+  xfce.enable = if varsvars.wms == "xfce" then true else false;
 
   # define system etm user
   # system define shell as a default shell and next configure it with home-manager for etm

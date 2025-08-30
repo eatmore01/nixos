@@ -47,7 +47,8 @@
         hostname = "nixos";
 
         gpu = "intel"; # or nvidia
-        status_bar = "i3status"; # or waybar
+        status_bar = "i3status"; # or waybar ( dont use with xfce )
+        wms = "sway"; # or xfce
         twoScreen = true;
       };
 
