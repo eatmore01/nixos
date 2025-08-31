@@ -2,8 +2,10 @@
   lib,
   pkgs,
   config,
+  vars,
   ...
 }:
+
 {
   # nvidia drivers for gpu options
   # only for PC ( nvidia videocard )
@@ -12,12 +14,11 @@
     enable = lib.mkOption {
       type = lib.types.bool;
       default = false;
+      description = "Enable NVIDIA driver configuration for NVIDIA GPUs (PC only, not laptops with hybrid GPUs).";
     };
   };
 
   config = lib.mkIf config.drivers.nvidia.enable {
-    services.xserver.videoDrivers = [ "nouveau" ]; # nvidia instead nouveau for official nvidia drivers and uncomment hardware.nvidia = {};
-
     hardware.graphics = {
       enable = true;
       enable32Bit = true;
@@ -32,37 +33,38 @@
       ];
     };
 
-    #hardware.nvidia = {
-    # Modesetting is required.
-    #  modesetting.enable = true;
+    services.xserver.videoDrivers = [
+      (if vars.gpu.nvidia.openSource then "nouveau" else "nvidia")
+    ];
 
-    # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
-    #  powerManagement.enable = false;
+    hardware.nvidia = lib.mkIf (!vars.gpu.nvidia.openSource) {
+      modesetting.enable = true;
 
-    # Fine-grained power management. Turns off GPU when not in use.
-    # Experimental and only works on modern Nvidia GPUs (Turing or newer).
-    #  powerManagement.finegrained = false;
+      # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
+      powerManagement.enable = false;
 
-    #dynamicBoost.enable = true; # Dynamic Boost
+      # Fine-grained power management. Turns off GPU when not in use.
+      # Experimental and only works on modern Nvidia GPUs (Turing or newer).
+      powerManagement.finegrained = false;
 
-    #  nvidiaPersistenced = false;
+      dynamicBoost.enable = true;
 
-    # Use the NVidia open source kernel module (not to be confused with the
-    # independent third-party "nouveau" open source driver).
-    # Support is limited to the Turing and later architectures. Full list of
-    # supported GPUs is at:
-    # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus
-    # Only available from driver 515.43.04+
-    # Currently alpha-quality version has bugs, so false is currently the recommended setting.
-    #  open = false;
+      nvidiaPersistenced = false;
 
-    # Enable the Nvidia settings menu,
-    # accessible via `nvidia-settings`.
+      # Use the NVidia open source kernel module (not to be confused with the
+      # independent third-party "nouveau" open source driver).
+      # Support is limited to the Turing and later architectures. Full list of
+      # supported GPUs is at:
+      # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus
+      # Only available from driver 515.43.04+
+      # Currently alpha-quality version has bugs, so false is currently the recommended setting.
+      open = false;
 
-    #  nvidiaSettings = true;
+      # Enable the Nvidia settings menu (`nvidia-settings`)
+      nvidiaSettings = true;
 
-    # can manualy point drivers version
-    #  package = config.boot.kernelPackages.nvidiaPackages.latest;
-    #};
+      # can manualy set drivers version
+      package = config.boot.kernelPackages.nvidiaPackages.latest;
+    };
   };
 }

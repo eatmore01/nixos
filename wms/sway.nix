@@ -8,11 +8,11 @@
 }:
 let
   bar =
-    if vars.status_bar == "waybar" then
+    if vars.wms.sway.status_bar == "waybar" then
       {
         command = "waybar";
       }
-    else if vars.status_bar == "i3status" then
+    else if vars.wms.sway.status_bar == "i3status" then
       {
         position = "bottom";
         statusCommand = "i3status-rs ~/.config/i3status-rust/config-etm.toml";
@@ -21,14 +21,14 @@ let
       { };
 
   defaultOoutput =
-    if vars.gpu == "nvidia" then
+    if vars.gpu.nvidia.enable then
       {
         "*".scale = "1";
         "DP-1" = {
           mode = "2560x1440@120Hz";
         };
       }
-    else if vars.gpu == "intel" then
+    else if vars.gpu.intel.enable then
       {
         "*".scale = "1";
         "eDP-1" = {
@@ -42,17 +42,17 @@ let
       { };
 
   mainMonitor =
-    if vars.gpu == "nvidia" then
+    if vars.gpu.nvidia.enable then
       "DP-1"
-    else if vars.gpu == "intel" then
+    else if vars.gpu.intel.enable then
       "HDMI-A-1"
     else
       "eDP-1"; # laptot default output
 
   secondMonitor =
-    if vars.gpu == "nvidia" && vars.twoScreen == true then
+    if vars.gpu.nvidia.enable && vars.twoScreen == true then
       "HDMI-A-1"
-    else if vars.gpu == "intel" && vars.twoScreen == true then
+    else if vars.gpu.intel.enable && vars.twoScreen == true then
       "eDP-1"
     else
       "eDP-1"; # laptop default output
@@ -87,8 +87,10 @@ in
     };
 
     # choose status bar for sway
-    waybar.enable = if vars.status_bar == "waybar" then true else false;
-    i3status.enable = if vars.status_bar == "i3status" then true else false;
+    waybar.enable =
+      if vars.wms.sway.enable && vars.wms.sway.status_bar == "waybar" then true else false;
+    i3status.enable =
+      if vars.wms.sway.enable && vars.wms.sway.status_bar == "i3status" then true else false;
 
     # keyrings sway support
     services.gnome.gnome-keyring.enable = true;
@@ -124,7 +126,7 @@ in
           output = defaultOoutput;
 
           workspaceOutputAssign =
-            if vars.twoScreen == true then
+            if vars.wms.sway.twoScreen == true then
               [
                 {
                   output = mainMonitor;
@@ -160,6 +162,14 @@ in
                 {
                   output = mainMonitor;
                   workspace = "3";
+                }
+                {
+                  output = mainMonitor;
+                  workspace = "4";
+                }
+                {
+                  output = mainMonitor;
+                  workspace = "5";
                 }
               ];
 
@@ -215,6 +225,8 @@ in
             "${modifier}+Shift+Down" = "move down";
             "${modifier}+Shift+Up" = "move up";
             "${modifier}+Shift+Right" = "move right";
+
+            "${modifier}+r" = "mode resize";
 
             "${modifier}+Escape" = "exec swaymsg exit";
           };

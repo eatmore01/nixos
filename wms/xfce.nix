@@ -1,4 +1,4 @@
-{ 
+{
   config,
   lib,
   pkgs,
@@ -17,9 +17,11 @@
     services.xserver = {
       enable = true;
       displayManager = {
-        xfce.enable = true;
         lightdm.enable = true;
         defaultSession = "xfce";
+      };
+      desktopManager = {
+        xfce.enable = true;
       };
     };
 
@@ -34,7 +36,6 @@
       xfce4-pulseaudio-plugin
       xfce4-power-manager
     ];
-
 
     programs.dconf.enable = true;
     programs.gnupg.agent = {

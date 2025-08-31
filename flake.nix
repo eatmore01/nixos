@@ -46,10 +46,28 @@
         user = "etm";
         hostname = "nixos";
 
-        gpu = "intel"; # or nvidia
-        status_bar = "i3status"; # or waybar ( dont use with xfce )
-        wms = "sway"; # or xfce
-        twoScreen = true;
+        gpu = {
+          intel = {
+            enable = false;
+          };
+          nvidia = {
+            enable = true;
+            openSource = true; # nouveau for sway
+          };
+        };
+
+        wms = {
+          sway = {
+            enable = true;
+            status_bar = "i3status"; # or waybar ( dont use with xfce )
+            twoScreen = false;
+          };
+          # XFCE DOESNT WORK
+          xfce = {
+            enable = false;
+            twoScreen = false;
+          };
+        };
       };
 
       pkgs = import nixpkgs {
@@ -59,7 +77,7 @@
 
         };
         # for intel gpus
-        #  enableHybridCodec enable support hybrid codecs, and it will boost perfomance and add support new codec formats.
+        # enableHybridCodec enable support hybrid codecs, and it will boost perfomance and add support new codec formats.
         packageOverrides = pkgs: {
           vaapiIntel = pkgs.vaapiIntel.override {
             enableHybridCodec = true;
