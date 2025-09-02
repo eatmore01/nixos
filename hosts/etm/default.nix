@@ -53,6 +53,7 @@
     neovim
     # devops utils
     kubectl
+    kubectx
     kubernetes-helm
     terraform
     k9s

@@ -47,7 +47,7 @@ let
     else if vars.gpu.intel.enable then
       "HDMI-A-1"
     else
-      "eDP-1"; # laptot default output
+      "";
 
   secondMonitor =
     if vars.gpu.nvidia.enable && vars.twoScreen == true then
@@ -55,7 +55,7 @@ let
     else if vars.gpu.intel.enable && vars.twoScreen == true then
       "eDP-1"
     else
-      "eDP-1"; # laptop default output
+      "";
 
 in
 {
