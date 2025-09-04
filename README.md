@@ -3,15 +3,21 @@
 ```bash
 git clone https://github.com/eatmore01/nixos.git
 mv nixos ~/.nixos
-rm /home/<user>/.nixos/hosts/hardware-configuration.nix
-sudo cp /etc/nixos/hardware-configuration.nix /home/<user>/.nixos/hosts/hardware-configuration.nix
-sudo chown <user>:users /home/<user>/.nixos/hosts/hardware-configuration.nix
 
-sudo nixos-rebuild switch --flake ~/.nixos#etm
-# sudo nixos-rebuild switch --flake /home/<users>/.nixos#etm
+rm /home/<user>/.nixos/hosts/hardware-configuration.nix
+# rm ~/.nixos/hosts/hardware-configuration.nix
+
+sudo cp /etc/nixos/hardware-configuration.nix /home/<user>/.nixos/hosts/hardware-configuration.nix
+# sudo cp /etc/nixos/hardware-configuration.nix ~/.nixos/hosts/hardware-configuration.nix
+
+sudo chown <user>:users /home/<user>/.nixos/hosts/hardware-configuration.nix
+# sudo chown etm:users ~/.nixos/hosts/hardware-configuration.nix
+
+sudo nixos-rebuild switch --flake /home/<users>/.nixos#etm
+# sudo nixos-rebuild switch --flake ~/.nixos#etm
 ```
 
-- recreate hardware-configuration.nix and configuration.nix 
+- recreate hardware-configuration.nix and configuration.nix
 ```bash
 sudo nixos-generate-config
 ```
@@ -20,6 +26,26 @@ sudo nixos-generate-config
 
 - customization `flake.nix`;
 ```
-42       gpu = "nvidia"; # or intel
-43       status_bar = "i3status"; # or waybar
+        gpu = {
+          intel = {
+            enable = false;
+          };
+          nvidia = {
+            enable = true;
+            openSource = true; # nouveau for sway
+          };
+        };
+
+        wms = {
+          sway = {
+            enable = true;
+            status_bar = "waybar"; # or i3status ( dont use with xfce )
+            twoScreen = false;
+          };
+          # XFCE DOESNT WORK
+          xfce = {
+            enable = false;
+            twoScreen = false;
+          };
+        };
 ```

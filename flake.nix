@@ -59,7 +59,7 @@
         wms = {
           sway = {
             enable = true;
-            status_bar = "i3status"; # or waybar ( dont use with xfce )
+            status_bar = "waybar"; # or i3status ( dont use with xfce )
             twoScreen = false;
           };
           # XFCE DOESNT WORK
