@@ -7,20 +7,9 @@
   ...
 }:
 {
-  services.greetd = {
-    enable = true;
-    settings = {
-      default_session = {
-        # greetd.tuigreet -> tuigreet in unstable packages
-        command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd sway";
-        user = "etm";
-      };
-    };
-  };
-
   # enable needed wms for etm
-  sway.enable = if vars.wms.sway.enable then true else false;
-  xfce.enable = if vars.wms.xfce.enable then true else false;
+  sway.enable = if vars.wms.sway.enable && vars.wms.gnome.enable == false then true else false;
+  gnome.enable = if vars.wms.gnome.enable && vars.wms.sway.enable == false then true else false;
 
   # define system etm user
   # system define shell as a default shell and next configure it with home-manager for etm

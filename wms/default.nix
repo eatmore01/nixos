@@ -1,6 +1,6 @@
 {
   imports = [
     ./sway.nix
-    ./xfce.nix
+    ./gnome.nix
   ];
 }

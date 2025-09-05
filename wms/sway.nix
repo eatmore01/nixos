@@ -8,11 +8,11 @@
 }:
 let
   bar =
-    if vars.wms.sway.status_bar == "waybar" then
+    if vars.wms.sway.statusBar == "waybar" then
       {
         command = "waybar";
       }
-    else if vars.wms.sway.status_bar == "i3status" then
+    else if vars.wms.sway.statusBar == "i3status" then
       {
         position = "bottom";
         statusCommand = "i3status-rs ~/.config/i3status-rust/config-etm.toml";
@@ -73,11 +73,11 @@ in
       sway = {
         enable = true;
         extraPackages = with pkgs; [
-          wl-clipboard
-          wlr-randr
           xwayland
           swaylock
           swayidle
+          wl-clipboard
+          wlr-randr
           wf-recorder
           mako
           grim
@@ -88,9 +88,28 @@ in
 
     # choose status bar for sway
     waybar.enable =
-      if vars.wms.sway.enable && vars.wms.sway.status_bar == "waybar" then true else false;
+      if
+        vars.wms.sway.enable && vars.wms.gnome.enable == false && vars.wms.sway.statusBar == "waybar"
+      then
+        true
+      else
+        false;
     i3status.enable =
-      if vars.wms.sway.enable && vars.wms.sway.status_bar == "i3status" then true else false;
+      if
+        vars.wms.sway.enable && vars.wms.gnome.enable == false && vars.wms.sway.statusBar == "i3status"
+      then
+        true
+      else
+        false;
+
+    # choose login manager
+    greetd.enable =
+      if
+        vars.wms.sway.enable && vars.wms.gnome.enable == false && vars.wms.sway.loginManager == "greetd"
+      then
+        true
+      else
+        false;
 
     # keyrings sway support
     services.gnome.gnome-keyring.enable = true;
@@ -101,6 +120,7 @@ in
       wayland.windowManager.sway = {
         enable = true;
         systemd.enable = true;
+
         config = rec {
           modifier = "Mod4";
           terminal = "foot";

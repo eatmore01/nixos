@@ -86,7 +86,9 @@ in
     options = "--delete-older-than 7d";
   };
 
-  drivers.intel.enable = if vars.gpu.intel.enable then true else false;
+  drivers.intel.enable =
+    if vars.gpu.intel.enable && vars.gpu.nvidia.enable == false then true else false;
 
-  drivers.nvidia.enable = if vars.gpu.nvidia.enable then true else false;
+  drivers.nvidia.enable =
+    if vars.gpu.nvidia.enable && vars.gpu.intel.enable == false then true else false;
 }

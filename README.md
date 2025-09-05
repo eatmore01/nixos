@@ -39,7 +39,7 @@ sudo nixos-generate-config
         wms = {
           sway = {
             enable = true;
-            status_bar = "waybar"; # or i3status ( dont use with xfce )
+            statusBar = "waybar"; # or i3status ( dont use with xfce )
             twoScreen = false;
           };
           # XFCE DOESNT WORK

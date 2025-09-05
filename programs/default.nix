@@ -12,5 +12,6 @@
     ./i3status.nix
     ./steam.nix
     ./nvim.nix
+    ./greetd.nix
   ];
 }

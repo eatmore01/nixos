@@ -52,19 +52,20 @@
           };
           nvidia = {
             enable = true;
-            openSource = true; # nouveau for sway
+            openSource = false; # nouveau drivers if set true | for sway
           };
         };
 
         wms = {
           sway = {
-            enable = true;
-            status_bar = "waybar"; # or i3status ( dont use with xfce )
+            enable = false;
+            loginManager = "greetd";
+            statusBar = "waybar"; # or i3status | doesnt work with sway.enable = false
             twoScreen = false;
           };
-          # XFCE DOESNT WORK
-          xfce = {
-            enable = false;
+
+          gnome = {
+            enable = true;
             twoScreen = false;
           };
         };
