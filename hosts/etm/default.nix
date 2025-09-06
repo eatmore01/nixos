@@ -11,6 +11,8 @@
   sway.enable = if vars.wms.sway.enable && vars.wms.gnome.enable == false then true else false;
   gnome.enable = if vars.wms.gnome.enable && vars.wms.sway.enable == false then true else false;
 
+  libvirt.enable = if vars.libvirt.enable then true else false;
+
   # define system etm user
   # system define shell as a default shell and next configure it with home-manager for etm
   programs.zsh.enable = true;
@@ -23,6 +25,8 @@
         "wheel"
         "storage"
         "plugdev"
+        "libvirtd"
+        "qemu-libvirtd"
       ];
     };
   };
@@ -31,6 +35,7 @@
     obsidian
     telegram-desktop
     discord
+    ghostty # terminal
     vscode # manage by home-manager
     obs-studio
     fastfetch

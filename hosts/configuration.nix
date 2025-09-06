@@ -9,6 +9,7 @@
 }:
 let
   hostSetup = ./${host};
+  procArch = if vars.procArch == "intel" then "kvm-intel" else "kvm-amd";
 in
 {
   imports = [
@@ -28,9 +29,15 @@ in
     "flakes"
   ];
 
-  boot.loader = {
-    systemd-boot.enable = true;
-    efi.canTouchEfiVariables = true;
+  boot = {
+    kernelModules = [
+      procArch # enable virtualization on core level
+    ];
+
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
   };
 
   time.timeZone = "Asia/Irkutsk";

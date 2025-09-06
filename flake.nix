@@ -42,9 +42,14 @@
 
       vars = {
         system = "x86_64-linux";
-        stateVersion = "25.05";
+        stateVersion = "25.05"; # 25.11
         user = "etm";
         hostname = "nixos";
+        procArch = "intel"; # or amd
+
+        libvirt = {
+          enable = true;
+        };
 
         gpu = {
           intel = {
