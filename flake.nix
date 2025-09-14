@@ -35,6 +35,7 @@
       self,
       nixpkgs,
       home-manager,
+      stable,
       nixvim,
       ...
     }@inputs:
@@ -48,7 +49,7 @@
         procArch = "intel"; # or amd
 
         libvirt = {
-          enable = true;
+          enable = false;
         };
 
         gpu = {
@@ -69,7 +70,7 @@
             twoScreen = false;
           };
 
-          gnome = {
+          plasma = {
             enable = true;
             twoScreen = false;
           };
@@ -91,6 +92,13 @@
         };
       };
 
+      pkgsStable = import stable {
+        system = vars.system;
+        config = {
+          allowUnfree = true;
+        };
+      };
+
       lib = nixpkgs.lib;
     in
     {
@@ -99,6 +107,7 @@
           inherit
             inputs
             pkgs
+            pkgsStable
             home-manager
             vars
             lib
@@ -112,6 +121,7 @@
           inherit
             inputs
             pkgs
+            pkgsStable
             home-manager
             vars
             lib

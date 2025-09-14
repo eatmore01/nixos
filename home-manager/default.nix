@@ -4,6 +4,7 @@
   vars,
   nixvim,
   inputs,
+  pkgsStable,
   ...
 }:
 {

@@ -14,6 +14,10 @@
   };
 
   config = lib.mkIf (config.greetd.enable) {
+    environment.systemPackages = with pkgs; [
+      greetd
+    ];
+    
     services.greetd = {
       enable = true;
       settings = {

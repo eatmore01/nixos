@@ -4,6 +4,7 @@
   home-manager,
   vars,
   lib,
+  pkgsStable,
   ...
 }:
 let
@@ -19,6 +20,7 @@ in
         inputs
         pkgs
         home-manager
+        pkgsStable
         vars
         ;
       host = "etm";

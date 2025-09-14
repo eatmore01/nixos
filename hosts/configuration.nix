@@ -68,7 +68,6 @@ in
     zip
     dnsutils
     htop
-    btop
     git
     wget
     usbutils
@@ -77,14 +76,12 @@ in
     # audio
     pipewire
 
-    # login manager
-    greetd # or greetd.greetd with stable chanel
     # filemanager
     nautilus
     # sound manager
     pavucontrol
     # apps
-    google-chrome
+    # google-chrome
   ];
 
   nix.gc = {

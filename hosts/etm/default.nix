@@ -4,12 +4,13 @@
   lib,
   vars,
   home-manager,
+  pkgsStable,
   ...
 }:
 {
   # enable needed wms for etm
-  sway.enable = if vars.wms.sway.enable && vars.wms.gnome.enable == false then true else false;
-  gnome.enable = if vars.wms.gnome.enable && vars.wms.sway.enable == false then true else false;
+  sway.enable = if vars.wms.sway.enable && vars.wms.plasma.enable == false then true else false;
+  plasma.enable = if vars.wms.plasma.enable && vars.wms.sway.enable == false then true else false;
 
   libvirt.enable = if vars.libvirt.enable then true else false;
 
@@ -31,32 +32,34 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [
-    obsidian
-    telegram-desktop
-    discord
-    ghostty # terminal
-    vscode # manage by home-manager
-    obs-studio
-    fastfetch
-    go
-    firefox
-    atac # tui postman
-    yazi # file manager for test
-    vlc # media player
-    neovim
-    # devops utils
-    kubectl
-    kubectx
-    kubernetes-helm
-    terraform
-    k9s
-    terragrunt
-    terraform-docs
-    helm-docs
-    kind
-    talosctl
-  ];
+  environment.systemPackages =
+    with pkgs;
+    [
+      obsidian
+      telegram-desktop
+      discord
+      ghostty # terminal
+      vscode # manage by home-manager
+      obs-studio
+      fastfetch
+      go
+      firefox
+      atac # tui postman
+      yazi # file manager for test
+      vlc # media player
+      neovim
+      # devops utils
+      kubectl
+      kubectx
+      kubernetes-helm
+      terraform
+      k9s
+      terragrunt
+      helm-docs
+      kind
+      talosctl
+    ]
+    ++ [ pkgsStable.terraform-docs ];
 
   # enable amnezia vpn service
   programs.amnezia-vpn.enable = true;
