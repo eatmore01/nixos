@@ -49,6 +49,7 @@
       vlc # media player
       neovim
       keepass
+      google-chrome
       # devops utils
       kubectl
       kubectx

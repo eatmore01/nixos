@@ -64,6 +64,8 @@ in
           "workbench.colorTheme" = "Dracula Theme";
           "workbench.iconTheme" = "tal7aouy.icons";
 
+          "gitlab.duoCodeSuggestions.enabled" = true;
+
           "[yaml]" = {
             "editor.tabSize" = 2;
             "editor.insertSpaces" = true;
@@ -116,6 +118,11 @@ in
           {
             key = "alt+z";
             command = "cursorHome";
+            when = "editorTextFocus";
+          }
+          {
+            key = "ctrl+enter";
+            command = "editor.action.triggerSuggest";
             when = "editorTextFocus";
           }
         ];
