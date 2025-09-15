@@ -48,6 +48,7 @@
       yazi # file manager for test
       vlc # media player
       neovim
+      keepass
       # devops utils
       kubectl
       kubectx
@@ -63,4 +64,5 @@
 
   # enable amnezia vpn service
   programs.amnezia-vpn.enable = true;
+  programs.openvpn3.enable = true;
 }
