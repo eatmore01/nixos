@@ -61,9 +61,6 @@ in
 
           "editor.defaultFormatter" = "hashicorp.terraform";
 
-          "workbench.colorTheme" = "Dracula Theme";
-          "workbench.iconTheme" = "tal7aouy.icons";
-
           "gitlab.duoCodeSuggestions.enabled" = true;
 
           "[yaml]" = {
@@ -131,8 +128,6 @@ in
           with pkgs.vscode-extensions;
           [
             jnoortheen.nix-ide
-            tal7aouy.icons
-            dracula-theme.theme-dracula
             golang.go
             gitlab.gitlab-workflow
             hashicorp.terraform

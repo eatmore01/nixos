@@ -18,6 +18,7 @@
       initContent = ''
         export KUBECONFIGS="?"
         export EDITOR=vim
+        export TERM=xterm-256color
       '';
 
       shellAliases = {
@@ -31,6 +32,9 @@
         talos-cluster-destroy = "talosctl cluster destroy --name test";
 
         l = "ls -la";
+
+        start-wvpn = "openvpn3 session-start --config work";
+        shutd-wvpn = "openvpn3 session-manage --config work --disconnect";
 
         # kube
         ktx = "kubectx";

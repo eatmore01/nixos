@@ -48,9 +48,9 @@
       yazi # file manager for test
       vlc # media player
       neovim
-      keepass
       google-chrome
       # devops utils
+      yq
       kubectl
       kubectx
       kubernetes-helm
