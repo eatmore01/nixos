@@ -6,8 +6,15 @@
   ...
 }:
 {
-  # setup tofi for sway
-  config = lib.mkIf (config.sway.enable) {
+
+  options.tofi = {
+    enable = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+    };
+  };
+
+  config = lib.mkIf (config.tofi.enable) {
     home-manager.users.${vars.user} = {
       home = {
         packages = with pkgs; [

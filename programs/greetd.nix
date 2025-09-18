@@ -5,6 +5,14 @@
   vars,
   ...
 }:
+let
+  # greetd.tuigreet -> tuigreet in unstable packages
+  defaultSessionCmd =
+    if vars.wms.i3.enable then
+      "${pkgs.i3}/bin/i3"
+    else
+      "${pkgs.tuigreet}/bin/tuigreet --time --cmd sway";
+in
 {
   options.greetd = {
     enable = lib.mkOption {
@@ -17,13 +25,12 @@
     environment.systemPackages = with pkgs; [
       greetd
     ];
-    
+
     services.greetd = {
       enable = true;
       settings = {
         default_session = {
-          # greetd.tuigreet -> tuigreet in unstable packages
-          command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd sway";
+          command = defaultSessionCmd;
           user = vars.user;
         };
       };

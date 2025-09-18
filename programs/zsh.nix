@@ -8,7 +8,7 @@
 {
   home-manager.users.${vars.user} = {
     home.stateVersion = vars.stateVersion;
-    
+
     programs.zsh = {
       enable = true;
       enableCompletion = true;

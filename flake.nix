@@ -70,6 +70,10 @@
             twoScreen = false;
           };
 
+          i3 = {
+            enable = false;
+          };
+
           plasma = {
             enable = true;
             twoScreen = false;

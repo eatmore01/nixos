@@ -9,8 +9,21 @@
 }:
 {
   # enable needed wms for etm
-  sway.enable = if vars.wms.sway.enable && vars.wms.plasma.enable == false then true else false;
-  plasma.enable = if vars.wms.plasma.enable && vars.wms.sway.enable == false then true else false;
+  sway.enable =
+    if vars.wms.sway.enable && vars.wms.plasma.enable == false && vars.wms.i3.enable == false then
+      true
+    else
+      false;
+  plasma.enable =
+    if vars.wms.plasma.enable && vars.wms.sway.enable == false && vars.wms.i3.enable == false then
+      true
+    else
+      false;
+  # i3.enable =
+  #   if vars.wms.i3.enable && vars.wms.sway.enable == false && vars.wms.plasma.enable == false then
+  #     true
+  #   else
+  #     false;
 
   libvirt.enable = if vars.libvirt.enable then true else false;
 
@@ -35,7 +48,6 @@
   environment.systemPackages =
     with pkgs;
     [
-      obsidian
       telegram-desktop
       discord
       ghostty # terminal

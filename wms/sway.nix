@@ -111,6 +111,9 @@ in
       else
         false;
 
+    # app launcher
+    tofi.enable = true;
+
     # keyrings sway support
     services.gnome.gnome-keyring.enable = true;
 
