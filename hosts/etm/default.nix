@@ -56,12 +56,14 @@
       fastfetch
       go
       firefox
+      brave
       atac # tui postman
       yazi # file manager for test
       vlc # media player
       neovim
       google-chrome
       # devops utils
+      python314
       yq
       kubectl
       kubectx

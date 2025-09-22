@@ -13,5 +13,6 @@
     ./steam.nix
     ./nvim.nix
     ./greetd.nix
+    ./terraform.nix
   ];
 }

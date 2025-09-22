@@ -16,9 +16,12 @@
       syntaxHighlighting.enable = true;
 
       initContent = ''
-        export KUBECONFIGS="?"
-        export EDITOR=vim
+        export KUBECONFIGS="/home/etm/Documents/code/configs/kube-contexts"
+        export EDITOR=nvim
         export TERM=xterm-256color
+
+        export LANG=en_US.UTF-8
+        export LC_ALL=en_US.UTF-8
       '';
 
       shellAliases = {
@@ -33,6 +36,7 @@
 
         l = "ls -la";
 
+        # ?
         start-wvpn = "openvpn3 session-start --config work";
         shutd-wvpn = "openvpn3 session-manage --config work --disconnect";
 
@@ -40,7 +44,7 @@
         ktx = "kubectx";
         k = "kubectl";
         h = "helm";
-        ks = "kubeswitches";
+        ks = "~/kubeswitches";
         # docker
         d = "docker";
         dc = "docker compose";
