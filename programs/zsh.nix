@@ -44,7 +44,7 @@
         ktx = "kubectx";
         k = "kubectl";
         h = "helm";
-        ks = "~/kubeswitches";
+        ks = "kubeswitches";
         # docker
         d = "docker";
         dc = "docker compose";
