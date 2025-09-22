@@ -67,6 +67,7 @@
       yq
       kubectl
       kubectx
+      kubeswitches # https://github.com/eatmore01/kubeswitches
       kubernetes-helm
       terraform
       k9s

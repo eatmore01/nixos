@@ -87,6 +87,13 @@
           allowUnfree = true;
 
         };
+
+        overlays = [
+          (self: super: {
+            kubeswitches = super.callPackage pkgs/kubeswitches.nix { }; # https://github.com/eatmore01/kubeswitches
+          })
+        ];
+
         # for intel gpus
         # enableHybridCodec enable support hybrid codecs, and it will boost perfomance and add support new codec formats.
         packageOverrides = pkgs: {
