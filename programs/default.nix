@@ -14,5 +14,6 @@
     ./nvim.nix
     ./greetd.nix
     ./terraform.nix
+    ./ghostty.nix
   ];
 }

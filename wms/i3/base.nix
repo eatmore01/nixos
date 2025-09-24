@@ -17,25 +17,37 @@
 
   config = lib.mkIf (config.i3.enable) {
 
-    i3status.enable = if vars.wms.i3.enable then true else false;
-
-    greetd.enable = if vars.wms.i3.enable && vars.wms.i3.loginManager == "greetd" then true else false;
-
-    tofi.enable = true;
+    i3status.enable = true;
 
     environment.pathsToLink = [ "/libexec" ];
-    # i3 settings
-    services.xserver = {
-      enable = true;
 
-      desktopManager = {
-        xterm.enable = false;
+    # i3 settings
+    services = {
+      displayManager = {
+        defaultSession = "none+i3";
       };
 
-      windowManager.i3 = {
+      xserver = {
         enable = true;
-        package = pkgs.i3;
-        configFile = ./i3-config;
+
+        xkb = {
+          layout = "us,ru";
+          variant = "";
+          options = "grp:ctrl_space_toggle";
+        };
+
+        desktopManager = {
+          xterm.enable = false;
+        };
+
+        windowManager.i3 = {
+          enable = true;
+          package = pkgs.i3;
+          configFile = ./i3-config;
+          extraPackages = with pkgs; [
+            i3lock
+          ];
+        };
       };
     };
 
@@ -43,7 +55,7 @@
 
     environment.systemPackages = with pkgs; [
       xorg.xrandr
-      tofi
+      dmenu
       dunst
       libnotify
       lxappearance
@@ -51,6 +63,7 @@
       mako
       grim
       slurp
+      i3
     ];
   };
 }

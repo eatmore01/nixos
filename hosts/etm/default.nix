@@ -19,11 +19,11 @@
       true
     else
       false;
-  # i3.enable =
-  #   if vars.wms.i3.enable && vars.wms.sway.enable == false && vars.wms.plasma.enable == false then
-  #     true
-  #   else
-  #     false;
+   i3.enable =
+     if vars.wms.i3.enable && vars.wms.sway.enable == false && vars.wms.plasma.enable == false then
+       true
+     else
+       false;
 
   libvirt.enable = if vars.libvirt.enable then true else false;
 

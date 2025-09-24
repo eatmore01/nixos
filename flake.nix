@@ -71,11 +71,11 @@
           };
 
           i3 = {
-            enable = false;
+            enable = true;
           };
 
           plasma = {
-            enable = true;
+            enable = false;
             twoScreen = false;
           };
         };

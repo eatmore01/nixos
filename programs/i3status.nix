@@ -7,6 +7,9 @@
 }:
 let
   settingsFormat = pkgs.formats.toml { };
+
+  keyboard_layout_driver =
+    if vars.wms.i3.enable && vars.wms.sway.enable == false then "setxkbmap" else "sway";
 in
 {
   options.i3status = {
@@ -62,12 +65,12 @@ in
           }
           {
             block = "keyboard_layout";
-            driver = "sway";
+            driver = keyboard_layout_driver;
           }
           {
             block = "time";
             interval = 60;
-            format = " $timestamp.datetime(f:'%Y-%m-%d %H:%M:%S') ";
+            format = " $timestamp.datetime(f:'%Y-%m-%d %H:%M') ";
           }
         ];
       };

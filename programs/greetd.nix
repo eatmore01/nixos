@@ -7,11 +7,7 @@
 }:
 let
   # greetd.tuigreet -> tuigreet in unstable packages
-  defaultSessionCmd =
-    if vars.wms.i3.enable then
-      "${pkgs.i3}/bin/i3"
-    else
-      "${pkgs.tuigreet}/bin/tuigreet --time --cmd sway";
+  defaultSessionCmd = "${pkgs.tuigreet}/bin/tuigreet --time --cmd sway";
 in
 {
   options.greetd = {
