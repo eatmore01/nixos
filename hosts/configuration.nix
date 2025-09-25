@@ -76,7 +76,9 @@ in
     # audio
     pipewire
 
+
     gcc
+    libgcc
     binutils
     glibc
     glibc.dev

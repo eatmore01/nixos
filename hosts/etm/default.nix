@@ -62,6 +62,7 @@
       vlc # media player
       neovim
       google-chrome
+      bat
       # devops utils
       python314
       yq

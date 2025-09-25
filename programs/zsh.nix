@@ -37,7 +37,7 @@
         l = "ls -la";
 
         # ?
-        start-wvpn = "openvpn3 session-start --config work";
+        start-wvpn = "cat ~/wvpn && openvpn3 session-start --config work";
         shutd-wvpn = "openvpn3 session-manage --config work --disconnect";
 
         # kube

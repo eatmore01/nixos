@@ -90,6 +90,8 @@ in
           "[python]" = {
             "editor.formatOnSave" = true;
             "editor.defaultFormatter" = "ms-python.black-formatter";
+            "editor.codeLens" = true;
+            "python.languageServer" = "Pylance";
           };
           "[json]" = {
             "editor.quickSuggestions" = {
@@ -131,6 +133,7 @@ in
             golang.go
             gitlab.gitlab-workflow
             hashicorp.terraform
+            ms-python.vscode-pylance
             ms-python.python
             ms-python.black-formatter
             redhat.vscode-yaml
