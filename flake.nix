@@ -58,7 +58,7 @@
           };
           nvidia = {
             enable = true;
-            openSource = false; # nouveau drivers if set true | for sway
+            openSource = false; # nouveau
           };
         };
 
@@ -67,16 +67,19 @@
             enable = false;
             loginManager = "greetd";
             statusBar = "waybar"; # or i3status | doesnt work with sway.enable = false
+            terminal = "foot"; # || alacritty
             twoScreen = false;
           };
 
           i3 = {
             enable = true;
+            terminal = "alacritty"; # ghostty
           };
 
           plasma = {
             enable = false;
             twoScreen = false;
+            # ghostty terminal by default
           };
         };
       };

@@ -57,6 +57,14 @@ let
     else
       "";
 
+  prefferTerminal =
+    if vars.wms.sway.terminal == "foot" then
+      "foot"
+    else if vars.wms.sway.terminal == "ghostty" then
+      "ghostty"
+    else
+      "alacritty";
+
 in
 {
   # custom option for enable sway
@@ -114,6 +122,10 @@ in
     # app launcher
     tofi.enable = true;
 
+    foot.enable = if vars.wms.sway.terminal == "foot" then true else false;
+    ghostty.enable = if vars.wms.sway.terminal == "ghostty" then true else false;
+    alacritty.enable = if vars.wms.sway.terminal == "alacritty" then true else false;
+
     # keyrings sway support
     services.gnome.gnome-keyring.enable = true;
 
@@ -126,7 +138,7 @@ in
 
         config = rec {
           modifier = "Mod4";
-          terminal = "foot";
+          terminal = prefferTerminal;
           menu = "${pkgs.tofi}/bin/tofi-run | xargs swaymsg exec --";
 
           bars = [
@@ -226,6 +238,7 @@ in
             "${modifier}+s" = "layout stacking";
             "${modifier}+w" = "layout tabbed";
             "${modifier}+e" = "layout toggle split";
+
             "${modifier}+Shift+f" =
               "exec grim /tmp/swayshot.png && wl-copy < /tmp/swayshot.png && mv /tmp/swayshot.png ~/pic/screen-$(date +%s).png";
             "${modifier}+Shift+s" =
@@ -250,6 +263,7 @@ in
             "${modifier}+Shift+Right" = "move right";
 
             "${modifier}+r" = "mode resize";
+            "floating_modifier" = "${modifier}";
 
             "${modifier}+Escape" = "exec swaymsg exit";
           };

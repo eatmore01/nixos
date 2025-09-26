@@ -1,7 +1,9 @@
 set $mod Mod4
 set $term ghostty
 set $screenshot_script_path ~/.config/scripts/screenshot
+set $rezise_pixel_gap 5
 
+focus_follows_mouse no
 
 bindsym $mod+d exec dmenu_run
 bindsym $mod+Return exec $term
@@ -56,6 +58,23 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 bindsym $mod+r mode "resize"
+
+mode "resize" {
+        bindsym h   resize shrink width $rezise_pixel_gap px or $rezise_pixel_gap ppt
+        bindsym k   resize grow height $rezise_pixel_gap px or $rezise_pixel_gap ppt
+        bindsym j   resize shrink height $rezise_pixel_gap px or $rezise_pixel_gap ppt
+        bindsym l   resize grow width $rezise_pixel_gap px or $rezise_pixel_gap ppt
+
+        bindsym Left   resize shrink width $rezise_pixel_gap px or $rezise_pixel_gap ppt
+        bindsym Down   resize grow height $rezise_pixel_gap px or $rezise_pixel_gap ppt
+        bindsym Up   resize shrink height $rezise_pixel_gap px or $rezise_pixel_gap ppt
+        bindsym Right   resize grow width $rezise_pixel_gap px or $rezise_pixel_gap ppt        
+
+        bindsym Escape mode "default"
+}
+
+floating_modifier $mod
+
 
 exec --no-startup-id xrandr --output DP-0 --primary --mode 2560x1440 --rate 180
 

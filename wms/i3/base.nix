@@ -6,6 +6,9 @@
   host,
   ...
 }:
+let
+  configPath = if vars.wms.i3.terminal == "alacritty" then ./i3-conf-alacritty else ./i3-conf-ghostty;
+in
 {
   options.i3 = {
     enable = lib.mkOption {
@@ -19,9 +22,13 @@
 
     i3status.enable = true;
 
+    dmenu.enable = true;
+
+    alacritty.enable = if vars.wms.i3.terminal == "alacritty" then true else false;
+    ghostty.enable = if vars.wms.i3.terminal == "ghostty" then true else false;
+
     environment.pathsToLink = [ "/libexec" ];
 
-    # i3 settings
     services = {
       displayManager = {
         defaultSession = "none+i3";
@@ -43,7 +50,7 @@
         windowManager.i3 = {
           enable = true;
           package = pkgs.i3;
-          configFile = ./i3-config;
+          configFile = configPath;
           extraPackages = with pkgs; [
             i3lock
           ];
@@ -55,7 +62,6 @@
 
     environment.systemPackages = with pkgs; [
       xorg.xrandr
-      dmenu
       dunst
       libnotify
       lxappearance
